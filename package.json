@@ -1,0 +1,25 @@
+{
+  "name": "vue-ssr-boilerplate",
+  "version": "0.0.1",
+  "description": "An SSR Vue boilerplate",
+  "main": "server.js",
+  "repository": "https://gitlab.com/dewadg/vue-ssr-boilerplate",
+  "author": "Adhyaksa Jaya <adhyaksaj@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "consola": "^2.10.1",
+    "fastify": "^2.7.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.2",
+    "vue-server-renderer": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
