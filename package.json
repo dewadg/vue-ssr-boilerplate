@@ -9,7 +9,10 @@
   "private": false,
   "scripts": {
     "dev": "NODE_ENV=development nodemon server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "build:server": "NODE_ENV=production webpack --config webpack/server.config.js --progress --hide-modules",
+    "build:client": "NODE_ENV=production webpack --config webpack/client.config.js --progress --hide-modules",
+    "build": "npm run build:server && npm run build:client"
   },
   "dependencies": {
     "consola": "^2.10.1",
