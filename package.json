@@ -13,13 +13,24 @@
   "dependencies": {
     "consola": "^2.10.1",
     "fastify": "^2.7.1",
+    "fastify-url-data": "^2.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",
     "vue-server-renderer": "^2.6.10",
     "vue-template-compiler": "^2.6.10",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "@babel/core": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "dotenv-webpack": "^1.7.0",
+    "file-loader": "^4.2.0",
+    "nodemon": "^1.19.1",
+    "vue-loader": "^15.7.1",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

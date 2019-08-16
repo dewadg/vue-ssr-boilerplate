@@ -1,22 +1,39 @@
 const server = require('fastify')()
 const consola = require('consola')
+const fs = require('fs')
+const { createBundleRenderer } = require('vue-server-renderer')
 
-const renderer = require('vue-server-renderer').createRenderer({
-  template: require('fs').readFileSync('./index.template.html', 'utf-8')
+const template = fs.readFileSync('./index.template.html', 'utf-8')
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+
+const renderer = createBundleRenderer(serverBundle, {
+  runInNewContext: false,
+  template,
+  clientManifest
 })
 
-const createApp = require('./app')
+server.register(require('fastify-url-data'), (err) => {
+  // Do nothing
+})
 
-server.get('*', (request, reply) => {
+server.get('*', async (request, reply) => {
   const context = {
     title: 'Hello, world!',
-    meta: ``
+    meta: ``,
+    url: request.urlData('path')
   }
 
-  const app = createApp(context)
-
-  renderer.renderToString(app, context, (error, html) => {
+  renderer.renderToString(context, (error, html) => {
     if (error) {
+      if (error.status === 404) {
+        reply
+          .status(404)
+          .send('Page not found.')
+
+        return
+      }
+
       reply
         .status(500)
         .send('Internal server error.')
