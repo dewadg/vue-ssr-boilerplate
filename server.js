@@ -61,6 +61,8 @@ server.use('/dist', serveStatic('./dist'))
 server.use('/public', serveStatic('./public'))
 
 server.get('*', async (request, reply) => {
+  await readyPromise
+
   const context = {
     title: 'Hello, world!',
     meta: ``,
