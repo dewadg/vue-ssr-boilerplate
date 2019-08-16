@@ -1,6 +1,7 @@
 const server = require('fastify')()
 const consola = require('consola')
 const fs = require('fs')
+const serveStatic = require('serve-static')
 const { createBundleRenderer } = require('vue-server-renderer')
 
 const template = fs.readFileSync('./index.template.html', 'utf-8')
@@ -18,6 +19,9 @@ const renderer = createBundleRenderer(serverBundle, {
 server.register(require('fastify-url-data'), (err) => {
   // Do nothing
 })
+
+server.use('/dist', serveStatic('./dist'))
+server.use('/public', serveStatic('./public'))
 
 server.get('*', async (request, reply) => {
   const context = {
