@@ -25,12 +25,15 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "babel-loader": "^8.0.6",
+    "chokidar": "^3.0.2",
     "dotenv-webpack": "^1.7.0",
     "file-loader": "^4.2.0",
+    "memory-fs": "^0.4.1",
     "nodemon": "^1.19.1",
     "vue-loader": "^15.7.1",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.6",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   }
