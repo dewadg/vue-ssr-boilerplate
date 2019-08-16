@@ -93,9 +93,15 @@ module.exports = function (server, templatePath, callback) {
   serverCompiler.outputFileSystem = mfs
 
   serverCompiler.watch({}, (error, stats) => {
-    if (error) throw error
+    if (error) {
+      consola.error(error)
+    }
 
     stats = stats.toJson()
+
+    stats.errors.forEach((error) => {
+      consola.error(error)
+    })
 
     if (stats.errors.length) return
 
