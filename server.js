@@ -32,7 +32,7 @@ async function start () {
 }
 
 let renderer
-let readyPromise
+let ready
 
 if (isProduction) {
   const template = fs.readFileSync(templatePath, 'utf-8')
@@ -44,7 +44,7 @@ if (isProduction) {
     clientManifest
   })
 } else {
-  readyPromise = devServer(
+  ready = devServer(
     server,
     templatePath,
     (bundle, options) => {
@@ -61,7 +61,7 @@ server.use('/dist', serveStatic('./dist'))
 server.use('/public', serveStatic('./public'))
 
 server.get('*', async (request, reply) => {
-  await readyPromise
+  await ready
 
   const context = {
     title: 'Hello, world!',
