@@ -10,7 +10,7 @@ const clientConfig = require('./client.config')
 
 function readFile (customFs, file) {
   try {
-    return customFs.readFile(path.join(clientConfig.output.path, file), 'utf-8')
+    return customFs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
   } catch (error) {
     // Do nothing
   }
