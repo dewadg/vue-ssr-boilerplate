@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "consola": "^2.10.1",
@@ -32,6 +33,7 @@
     "nodemon": "^1.19.1",
     "vue-loader": "^15.7.1",
     "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1",
