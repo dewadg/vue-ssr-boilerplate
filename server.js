@@ -7,6 +7,8 @@ const template = fs.readFileSync('./index.template.html', 'utf-8')
 const serverBundle = require('./dist/vue-ssr-server-bundle.json')
 const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 
+const APP_PORT = process.env.VUE_APP_PORT || 3000
+
 const renderer = createBundleRenderer(serverBundle, {
   runInNewContext: false,
   template,
@@ -50,11 +52,11 @@ server.get('*', async (request, reply) => {
 
 async function start () {
   try {
-    await server.listen(8000)
+    await server.listen(APP_PORT)
 
     consola.ready({
       badge: true,
-      message: `App is runing on port 8000`
+      message: `App is runing on port ${APP_PORT}`
     })
   } catch (error) {
     consola.error(error)
