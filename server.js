@@ -1,4 +1,3 @@
-const Vue = require('vue')
 const server = require('fastify')()
 const consola = require('consola')
 
@@ -6,7 +5,7 @@ const renderer = require('vue-server-renderer').createRenderer({
   template: require('fs').readFileSync('./index.template.html', 'utf-8')
 })
 
-const app = require('./app')
+const createApp = require('./app')
 
 server.get('*', (request, reply) => {
   const context = {
@@ -14,12 +13,15 @@ server.get('*', (request, reply) => {
     meta: ``
   }
 
+  const app = createApp(context)
+
   renderer.renderToString(app, context, (error, html) => {
     if (error) {
       reply
         .status(500)
         .send('Internal server error.')
 
+      consola.error(error)
       return
     }
 
