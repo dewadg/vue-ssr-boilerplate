@@ -40,6 +40,14 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   },

@@ -9,3 +9,9 @@ export default {
   name: 'Home'
 }
 </script>
+
+<style lang="scss">
+.home-page {
+  font-size: 4rem;
+}
+</style>
