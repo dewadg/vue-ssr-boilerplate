@@ -62,7 +62,6 @@ server.register(require('fastify-url-data'), (err) => {
 })
 
 server.use('/dist', serveStatic('./dist'))
-server.use('/public', serveStatic('./public'))
 
 server.get('*', async (request, reply) => {
   await ready
