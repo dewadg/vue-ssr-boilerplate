@@ -14,6 +14,7 @@ export default function (context) {
       const matchedComponents = router.getMatchedComponents()
 
       if (!matchedComponents.length) {
+        // eslint-disable-next-line prefer-promise-reject-errors
         reject({ status: 404 })
       }
 

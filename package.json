@@ -12,7 +12,8 @@
     "start": "NODE_ENV=production node server.js",
     "build:server": "NODE_ENV=production webpack --config webpack/server.config.js --progress --hide-modules",
     "build:client": "NODE_ENV=production webpack --config webpack/client.config.js --progress --hide-modules",
-    "build": "npm run build:server && npm run build:client"
+    "build": "npm run build:server && npm run build:client",
+    "lint": "eslint -c .eslintrc.js --ext .js,.vue --ignore-path .gitignore src"
   },
   "dependencies": {
     "consola": "^2.10.1",
@@ -34,6 +35,13 @@
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "dotenv-webpack": "^1.7.0",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.3",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "memory-fs": "^0.4.1",
