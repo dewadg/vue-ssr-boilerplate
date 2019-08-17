@@ -3,6 +3,8 @@ const path = require('path')
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const DotenvPlugin = require('dotenv-webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -44,10 +46,40 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'vue-style-loader',
-          'css-loader',
+          isProduction
+            ? MiniCssExtractPlugin.loader
+            : 'vue-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => {
+                const plugins = [
+                  require('postcss-preset-env')(),
+                  require('autoprefixer')(),
+                ]
+
+                if (isProduction) {
+                  plugins.push(require('cssnano')())
+                }
+
+                return plugins
+              },
+              minimize: true
+            }
+          },
           'sass-loader'
         ]
+      },
+      {
+        test: /\.css$/,
+        loader: MiniCssExtractPlugin.loader
       }
     ]
   },
@@ -65,6 +97,21 @@ module.exports = {
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 7
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.template.html'),
+      hash: true,
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
     })
   ],
   resolve: {
