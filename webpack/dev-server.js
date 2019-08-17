@@ -8,14 +8,6 @@ const consola = require('consola')
 const serverConfig = require('./server.config')
 const clientConfig = require('./client.config')
 
-function readFile (customFs, file) {
-  try {
-    return customFs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
-  } catch (error) {
-    // Do nothing
-  }
-}
-
 module.exports = function (server, templatePath, callback) {
   let bundle
   let template
@@ -24,7 +16,7 @@ module.exports = function (server, templatePath, callback) {
 
   const readyPromise = new Promise(r => ready = r)
 
-  const update = () => {
+  const rebuild = () => {
     if (!bundle || !clientManifest) return
 
     ready()
@@ -41,9 +33,8 @@ module.exports = function (server, templatePath, callback) {
     .watch(templatePath)
     .on('change', () => {
       template = fs.readFileSync(templatePath, 'utf-8')
-      consola.info('index.template.html has been updated')
 
-      update()
+      rebuild()
     })
 
   // Client
@@ -81,7 +72,7 @@ module.exports = function (server, templatePath, callback) {
       'vue-ssr-client-manifest.json'
     ))
 
-    update()
+    rebuild()
   })
 
   server.use(require('webpack-hot-middleware')(clientCompiler, { heartbeat: 5000 }))
@@ -105,9 +96,14 @@ module.exports = function (server, templatePath, callback) {
 
     if (stats.errors.length) return
 
-    bundle = JSON.parse(readFile(mfs, 'vue-ssr-server-bundle.json'))
+    bundle = JSON.parse(
+      mfs.readFileSync(
+        path.join(clientConfig.output.path, 'vue-ssr-server-bundle.json'),
+        'utf-8'
+      )
+    )
 
-    update()
+    rebuild()
   })
 
   return readyPromise
