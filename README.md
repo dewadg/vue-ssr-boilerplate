@@ -7,6 +7,7 @@ I made this Vue.js boilerplate for learning purpose. Currently equipped with:
 - CSS extraction
 - CSS, HTML minify
 - ESLint with StandardJS
+- Docker ready
 - Soon to be more
 
 ## How to use
