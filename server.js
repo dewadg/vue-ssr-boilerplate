@@ -4,10 +4,12 @@ const fs = require('fs')
 const path = require('path')
 const serveStatic = require('serve-static')
 const { createBundleRenderer } = require('vue-server-renderer')
-const devServer = require('./webpack/dev-server')
 
 const isProduction = process.env.NODE_ENV === 'production'
-const APP_PORT = process.env.VUE_APP_PORT || 3000
+const host = '0.0.0.0'
+const port = 8503
+
+const devServer = !isProduction ? require('./webpack/dev-server') : null
 const templatePath = path.resolve(__dirname, 'index.template.html')
 
 function createRenderer (bundle, options) {
@@ -20,11 +22,11 @@ function createRenderer (bundle, options) {
 
 async function start () {
   try {
-    await server.listen(APP_PORT)
+    await server.listen(port, host)
 
     consola.ready({
       badge: true,
-      message: `App is runing on port ${APP_PORT}`
+      message: `App is runing on port ${port}`
     })
   } catch (error) {
     consola.error(error)
