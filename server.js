@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const server = require('fastify')()
 const consola = require('consola')
 const fs = require('fs')
@@ -66,8 +68,7 @@ server.get('*', async (request, reply) => {
   await ready
 
   const context = {
-    title: 'Hello, world!',
-    meta: ``,
+    title: process.env.VUE_APP_NAME || 'Hello, world!',
     url: request.urlData('path')
   }
 
