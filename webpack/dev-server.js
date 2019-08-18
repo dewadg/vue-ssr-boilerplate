@@ -8,6 +8,15 @@ const consola = require('consola')
 const serverConfig = require('./server.config')
 const clientConfig = require('./client.config')
 
+function readFile (customFs, file) {
+  try {
+    return customFs.readFileSync(
+      path.join(clientConfig.output.path, file),
+      'utf-8'
+    )
+  } catch {}
+}
+
 module.exports = function (server, templatePath, callback) {
   let bundle
   let template
@@ -96,12 +105,7 @@ module.exports = function (server, templatePath, callback) {
 
     if (stats.errors.length) return
 
-    bundle = JSON.parse(
-      mfs.readFileSync(
-        path.join(clientConfig.output.path, 'vue-ssr-server-bundle.json'),
-        'utf-8'
-      )
-    )
+    bundle = JSON.parse(readFile(mfs, 'vue-ssr-server-bundle.json'))
 
     rebuild()
   })
