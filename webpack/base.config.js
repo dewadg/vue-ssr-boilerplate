@@ -3,7 +3,7 @@ const path = require('path')
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const DotenvPlugin = require('dotenv-webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('extract-css-chunks-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
