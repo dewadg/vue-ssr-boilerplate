@@ -61,6 +61,8 @@ server.register(require('fastify-url-data'), (err) => {
   // Do nothing
 })
 
+server.register(require('fastify-cookie'))
+
 server.use('/dist', serveStatic('./dist'))
 
 server.get('*', async (request, reply) => {
@@ -68,7 +70,8 @@ server.get('*', async (request, reply) => {
 
   const context = {
     title: process.env.VUE_APP_NAME || 'Hello, world!',
-    url: request.urlData('path')
+    url: request.urlData('path'),
+    cookies: request.cookies ? request.cookies : {}
   }
 
   renderer.renderToString(context, (error, html) => {
