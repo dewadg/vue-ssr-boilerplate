@@ -3,12 +3,13 @@
 I made this Vue.js boilerplate for learning purpose. Currently equipped with:
 
 - Server-Side Rendering (with Fastify as server)
+- Cookies injection to server renderer context
 - Development server rebuilds on file changes
-- CSS extraction
-- CSS, HTML minify
-- ESLint with StandardJS
 - Docker ready
-- Soon to be more
+
+## Coding Standard
+
+[Standard JS](https://standardjs.com)
 
 ## How to use
 
@@ -17,6 +18,8 @@ Development:
 ```
 yarn dev
 ```
+
+Dev server will rebuild on file changes.
 
 Production:
 
