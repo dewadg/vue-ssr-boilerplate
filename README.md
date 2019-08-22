@@ -9,7 +9,7 @@ I made this Vue.js boilerplate for learning purpose. Currently equipped with:
 
 ## Coding Standard
 
-[Standard JS](https://standardjs.com)
+I use [Standard JS](https://standardjs.com)
 
 ## How to use
 
