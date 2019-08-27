@@ -2,11 +2,14 @@ import { createApp } from './app'
 
 export default function (context) {
   return new Promise((resolve, reject) => {
+    const appContext = {
+      cookies: context.cookies
+    }
     const {
       app,
       router,
       store
-    } = createApp()
+    } = createApp(appContext)
 
     router.push(context.url)
 
