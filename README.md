@@ -3,7 +3,8 @@
 I made this Vue.js boilerplate for learning purpose. Currently equipped with:
 
 - Server-Side Rendering (with Fastify as server)
-- Cookies injection to server renderer context
+- Cookies injection to server/client renderer context
+- Middlewares!
 - Development server rebuilds on file changes
 - Docker ready
 
