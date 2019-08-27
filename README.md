@@ -28,11 +28,11 @@ yarn build
 yarn start
 ```
 
-# Routes
+## Routes
 
 Routes are defined on `~/routes/index.js` and will be automatically injected to Vue Router.
 
-# Middlewares
+## Middlewares
 
 Middlewares are defined under `~/middlewares` directory. Any middleware exported on `~/middlewares/index.js` will be **global middleware**. We can create middleware like this:
 
@@ -59,7 +59,7 @@ Then specify it on the route object:
 }
 ```
 
-# `appContext`
+## `appContext`
 
 `appContext` is a parameter that middleware functions receive. It will contain:
 
