@@ -39,6 +39,8 @@ async function start () {
         template,
         clientManifest
       })
+
+      printConsole()
     } else {
       ready = devServer(
         server,
