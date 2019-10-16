@@ -43,8 +43,6 @@ export default async function fetchLoggedUser (appContext) {
   const { store, next } = appContext
 
   await store.dispatch('fetchLoggedUser')
-
-  next()
 }
 ```
 
