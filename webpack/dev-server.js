@@ -58,7 +58,7 @@ module.exports = function (server, templatePath, callback) {
   const clientCompiler = webpack(clientConfig)
   const devMiddleware = require('webpack-dev-middleware')(clientCompiler, {
     publicPath: clientConfig.output.publicPath,
-    noInfo: true
+    stats: 'errors-warnings'
   })
 
   server.use(devMiddleware)
