@@ -127,5 +127,10 @@ module.exports = {
   },
   performance: {
     hints: false
+  },
+  stats: {
+    chunks: false,
+    hash: false,
+    children: false
   }
 }
