@@ -1,6 +1,6 @@
 {
   "name": "vue-ssr-boilerplate",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An SSR Vue boilerplate",
   "main": "server.js",
   "repository": "https://gitlab.com/dewadg/vue-ssr-boilerplate",
