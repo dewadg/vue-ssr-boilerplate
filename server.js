@@ -66,6 +66,7 @@ async function start () {
       const context = {
         title: process.env.VUE_APP_NAME || 'Hello, world!',
         url: request.urlData('path'),
+        query: request.query,
         cookies: request.cookies ? request.cookies : {}
       }
 

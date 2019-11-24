@@ -11,7 +11,10 @@ export default function (context) {
       store
     } = createApp(appContext)
 
-    router.push(context.url)
+    router.push({
+      path: context.url,
+      query: context.query
+    })
 
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
